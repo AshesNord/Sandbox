@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Results\FirstResultWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\AllResultsWrapper.cs" />
+    <Compile Include="Results\Repository.cs" />
+    <Compile Include="Results\SecondResultWrapper.cs" />
+    <Compile Include="Translator\ResultTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
