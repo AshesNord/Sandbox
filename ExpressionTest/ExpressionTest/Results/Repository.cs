@@ -35,19 +35,5 @@ namespace ExpressionTest.Results {
             throw new ArgumentException($"Cannot translate result of type {resultType.Name}");
         }
 
-        public static IEnumerable<TResult> Translate<TResult>(int count) {
-            var resultType = typeof(TResult);
-
-            if (resultType == typeof(FirstResultWrapper)) {
-                return (IEnumerable<TResult>)firstResult.Take(count).ToList();
-            }
-
-            if (resultType == typeof(SecondResultWrapper)) {
-                return (IEnumerable<TResult>)secondResult.Take(count).ToList();
-            }
-
-            throw new ArgumentException($"Cannot translate result of type {resultType.Name}");
-        }
-
     }
 }
