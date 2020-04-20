@@ -5,24 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExpressionTest.Results {
-    public class Repository {
+    public class Context {
 
-        private static readonly IEnumerable<FirstResultWrapper> firstResult =
+        private readonly IEnumerable<FirstResultWrapper> firstResult =
             new List<FirstResultWrapper> {
-                new FirstResultWrapper { Name = "Weight", Value = 92 },
-                new FirstResultWrapper { Name = "Height", Value = 180 }
+                new FirstResultWrapper { Name = "FirstName", Value = 10 },
+                new FirstResultWrapper { Name = "SecondName", Value = 20 },
+                new FirstResultWrapper { Name = "ThirdName", Value = 30 }
             };
 
-        private static readonly IEnumerable<SecondResultWrapper> secondResult =
+        private readonly IEnumerable<SecondResultWrapper> secondResult =
             new List<SecondResultWrapper> {
-                new SecondResultWrapper { City = "Norilsk", Country = "Russia" },
-                new SecondResultWrapper { City = "Lugansk", Country = "Ukraine" },
+                new SecondResultWrapper { City = "Paris", Country = "France" },
+                new SecondResultWrapper { City = "Tokyo", Country = "Japan" },
                 new SecondResultWrapper { City = "New York", Country = "USA" },
                 new SecondResultWrapper { City = "London", Country = "UK" }
             };
 
-        public static IEnumerable<TResult> Translate<TResult>() {
+        public IEnumerable<TResult> Translate<TResult>(Reader reader) {
             var resultType = typeof(TResult);
+
+            // Исключительно для отладки.
+            reader.TranslateCall(resultType.Name);
 
             if (resultType == typeof(FirstResultWrapper)) {
                 return (IEnumerable<TResult>)firstResult;
@@ -34,6 +38,8 @@ namespace ExpressionTest.Results {
 
             throw new ArgumentException($"Cannot translate result of type {resultType.Name}");
         }
+
+        
 
     }
 }
